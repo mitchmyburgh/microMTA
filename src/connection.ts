@@ -351,6 +351,7 @@ export class microMTAConnection {
         // }
 
         this.reply(...SMTPReply.TLS_GO_AHEAD);
+        this.greeted = false;
         // this.starttls();
         break;
       case SMTPCommand.MAIL:
