@@ -80,7 +80,7 @@ export class microMTAConnection {
   }
 
   private get extensions() {
-    const extensions = ['SMTPUTF8', 'PIPELINING', '8BITMIME'];
+    const extensions = ['SMTPUTF8', 'PIPELINING', '8BITMIME', 'STARTTLS'];
 
     if (!this.secure && this.options.secureContextOptions) {
       extensions.push('STARTTLS');
@@ -340,18 +340,18 @@ export class microMTAConnection {
         this.reply(...SMTPReply.BAD_SEQUENCE);
         break;
       case SMTPCommand.STARTTLS:
-        if (!this.options.secureContextOptions) {
-          this.reply(...SMTPReply.NOT_IMPLEMENTED);
-          break;
-        }
+        // if (!this.options.secureContextOptions) {
+        //   this.reply(...SMTPReply.NOT_IMPLEMENTED);
+        //   break;
+        // }
 
-        if (this.secure) {
-          this.reply(...SMTPReply.BAD_SEQUENCE);
-          break;
-        }
+        // if (this.secure) {
+        //   this.reply(...SMTPReply.BAD_SEQUENCE);
+        //   break;
+        // }
 
         this.reply(...SMTPReply.TLS_GO_AHEAD);
-        this.starttls();
+        // this.starttls();
         break;
       case SMTPCommand.MAIL:
         // MAIL FROM:<user@example.com>
